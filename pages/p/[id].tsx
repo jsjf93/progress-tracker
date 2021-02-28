@@ -24,7 +24,7 @@ type Props = {
   }
 }
 
-const Post: React.FC<Props> = (props) => {
+const TodoItem: React.FC<Props> = (props) => {
   const { todo: { title, user: { name } },  } = props
 
   return (
@@ -37,4 +37,4 @@ const Post: React.FC<Props> = (props) => {
   )
 }
 
-export default Post
+export default TodoItem

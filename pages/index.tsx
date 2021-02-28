@@ -30,9 +30,11 @@ const Todos: React.FC<Props> = (props) => {
         <h1>Todos by user</h1>
         <main>
           {props.todos.map(todo =>
-          <Link key={todo.id} href={`/p/${todo.id}`}>
-            {`${todo.title} - ${todo.user.name}`}
-          </Link>
+          <div key={todo.id}>
+             <Link href={`/p/${todo.id}`}>
+              {`${todo.title} - ${todo.user.name}`}
+            </Link>
+          </div>
           )}
         </main>
       </div>
