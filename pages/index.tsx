@@ -1,19 +1,30 @@
 import React from "react"
-import { GetServerSideProps, GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import Layout from "../components/Layout"
 import prisma from '../lib/prisma'
 import { Todo } from "@prisma/client"
 import Link from "next/link"
+import { getSession } from 'next-auth/client'
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const todos = await prisma.todo.findMany({
-    where: { deleted: false },
-    include: {
-      user: {
-        select: { name: true },
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await getSession({ req })
+  let todos = [];
+  if (session) {
+    const user = await prisma.user.findUnique({
+      where: { email: session?.user?.email  },
+      select: { id: true }
+    })
+  
+    todos = await prisma.todo.findMany({
+      where: { deleted: false, userId: user.id },
+      include: {
+        user: {
+          select: { name: true },
+        },
       },
-    },
-  })
+    })
+
+  }
   return { props: { todos } }
 }
 
