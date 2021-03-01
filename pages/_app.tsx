@@ -1,5 +1,5 @@
-import { AppProps } from "next/app";
-import { Provider } from 'next-auth/client'
+import { AppProps } from 'next/app';
+import { Provider } from 'next-auth/client';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

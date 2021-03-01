@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Router from 'next/router'
+import React, { useState } from 'react';
+import Layout from '../components/Layout';
+import Router from 'next/router';
 
 const Draft: React.FC = () => {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
 
   const submitData = async (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     try {
-      const body = { title }
+      const body = { title };
       await fetch('/api/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      })
-      await Router.push('/')
+      });
+      await Router.push('/');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -40,7 +40,7 @@ const Draft: React.FC = () => {
         </form>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Draft
+export default Draft;
