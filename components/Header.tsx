@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { signOut, useSession } from 'next-auth/client'
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/client';
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     <nav>
       <div className="left">
         <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
+          <a className="bold" data-active={isActive('/')}>
             Feed
           </a>
         </Link>

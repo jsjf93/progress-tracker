@@ -6,9 +6,13 @@ import { Todo } from '@prisma/client';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
 
+type TodoWithUserName = Todo & {
+  user: { name: string | null } | null;
+};
+
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
-  let todos = [];
+  let todos: TodoWithUserName[] = [];
   if (session) {
     const user = await prisma.user.findUnique({
       where: { email: session?.user?.email },
@@ -16,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     });
 
     todos = await prisma.todo.findMany({
-      where: { deleted: false, userId: user.id },
+      where: { deleted: false, userId: user?.id },
       include: {
         user: {
           select: { name: true },
@@ -28,9 +32,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 };
 
 type Props = {
-  todos: (Todo & {
-    user: { name: string };
-  })[];
+  todos: TodoWithUserName[];
 };
 
 const Todos: React.FC<Props> = (props) => {
@@ -41,9 +43,7 @@ const Todos: React.FC<Props> = (props) => {
         <main>
           {props.todos.map((todo) => (
             <div key={todo.id}>
-              <Link href={`/p/${todo.id}`}>
-                {`${todo.title} - ${todo.user.name}`}
-              </Link>
+              <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
         </main>
