@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
+import '../styles/globals.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
