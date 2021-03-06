@@ -47,7 +47,7 @@ const Todos: React.FC<Props> = (props) => {
               <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
-          <PrimaryButton>Submit</PrimaryButton>
+          <PrimaryButton size="large">Submit</PrimaryButton>
           <br />
           <br />
           <SecondaryButton>Submit</SecondaryButton>
