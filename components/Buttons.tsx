@@ -1,30 +1,27 @@
 import styled from 'styled-components';
-
-const primary300 = '#2357db';
-const primary400 = '#2C3B61';
+import { defaultTheme, typeScale } from '../utils';
 
 const Button = styled.button`
   border-radius: 10px;
   padding: 12px 24px;
-  font-size: 1rem;
+  font-size: ${typeScale.paragraph};
   min-width: 100px;
   cursor: pointer;
-  font-family: 'Comfortaa';
 `;
 
 export const PrimaryButton = styled(Button)`
-  background-color: ${primary300};
+  background-color: ${defaultTheme.primaryColor};
   border: none;
   color: white;
 `;
 
 export const SecondaryButton = styled(Button)`
-  color: ${primary300};
-  border: 1px ${primary300} solid;
+  color: ${defaultTheme.primaryColor};
+  border: 1px ${defaultTheme.primaryColor} solid;
 `;
 
 export const TertiaryButton = styled(Button)`
-  color: ${primary300};
+  color: ${defaultTheme.primaryColor};
   border: none;
   background-color: white;
 `;

@@ -51,7 +51,6 @@ const Todos: React.FC<Props> = (props) => {
           <br />
           <br />
           <SecondaryButton>Submit</SecondaryButton>
-
           <br />
           <br />
           <TertiaryButton>Submit</TertiaryButton>

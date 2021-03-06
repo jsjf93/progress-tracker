@@ -1,4 +1,4 @@
-export const primaryFont = '"Comforta"';
+export const primaryFont = '"Comfortaa"';
 
 export const typeScale = {
   header1: '3.052rem',
