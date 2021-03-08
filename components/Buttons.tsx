@@ -10,6 +10,45 @@ const BUTTON_MODIFIERS = {
     font-size: ${typeScale.header5};
     padding: 16px 24px;
   `,
+  warning: () => `
+    background-color: ${defaultTheme.status.warningColor};
+    color: ${defaultTheme.textColorInverted};
+
+    &:hover, &:focus {
+      background-color: ${defaultTheme.status.warningColorHover};
+      outline: 2px solid ${defaultTheme.status.warningColorHover};
+    }
+
+    &:active {
+      background-color: ${defaultTheme.status.warningColorActive};
+    }
+  `,
+  error: () => `
+    background-color: ${defaultTheme.status.errorColor};
+    color: ${defaultTheme.textColorInverted};
+
+    &:hover, &:focus {
+      background-color: ${defaultTheme.status.errorColorHover};
+      outline: 3px solid ${defaultTheme.status.errorColorHover};
+    }
+
+    &:active {
+      background-color: ${defaultTheme.status.errorColorActive};
+    }
+  `,
+  success: () => `
+    background-color: ${defaultTheme.status.successColor};
+    color: ${defaultTheme.textColorInverted};
+
+    &:hover, &:focus {
+      background-color: ${defaultTheme.status.successColorHover};
+      outline: 3px solid ${defaultTheme.status.successColorHover};
+    }
+
+    &:active {
+      background-color: ${defaultTheme.status.successColorActive};
+    }
+  `,
 };
 
 const Button = styled.button`
@@ -21,11 +60,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-interface ModifierProps {
-  size: 'small' | 'large';
+interface Props {
+  size?: 'small' | 'large';
+  status?: 'warning' | 'error' | 'success';
 }
 
-export const PrimaryButton = styled(Button)<ModifierProps>`
+export const PrimaryButton = styled(Button)<Props>`
   background-color: ${defaultTheme.primaryColor};
   border: none;
   color: white;
@@ -54,7 +94,8 @@ export const PrimaryButton = styled(Button)<ModifierProps>`
     box-shadow: none;
   }
 
-  ${(props) => BUTTON_MODIFIERS[props.size]}
+  ${(props) => (props.size ? BUTTON_MODIFIERS[props.size] : '')}
+  ${(props) => (props.status ? BUTTON_MODIFIERS[props.status] : '')}
 `;
 
 export const SecondaryButton = styled(Button)`

@@ -6,6 +6,7 @@ import { Todo } from '@prisma/client';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
 import { PrimaryButton, SecondaryButton, TertiaryButton } from '@components/Buttons';
+import { SignUpModal } from '@components/Modal';
 
 type TodoWithUserName = Todo & {
   user: { name: string | null } | null;
@@ -47,13 +48,15 @@ const Todos: React.FC<Props> = (props) => {
               <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
-          <PrimaryButton size="large">Submit</PrimaryButton>
+          <PrimaryButton>Submit</PrimaryButton>
           <br />
           <br />
           <SecondaryButton>Submit</SecondaryButton>
           <br />
           <br />
           <TertiaryButton>Submit</TertiaryButton>
+
+          <SignUpModal />
         </main>
       </div>
     </Layout>
