@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { typeScale } from '../utils';
 import { PrimaryButton } from '@components/Buttons';
+import { animated, config, useSpring } from 'react-spring';
 
 const ModalWrapper = styled.div`
   width: 800px;
@@ -45,16 +46,29 @@ const Img = styled.img`
   outline: none;
 `;
 
-export const SignUpModal = () => {
-  return (
-    <ModalWrapper>
-      <img src="/images/signup.svg" alt="Signup" aria-hidden={true} />
-      <CloseModalButton aria-label="Close modal" onClick={() => console.log('You closed the modal!')}>
-        <Img src="/images/close.svg" alt="Close modal icon" />
-      </CloseModalButton>
+type Props = {
+  showModal: boolean;
+  setShowModal: (showModal: boolean) => void;
+};
 
-      <SignUpHeader>Sign up!</SignUpHeader>
-      <PrimaryButton>Submit</PrimaryButton>
-    </ModalWrapper>
+export const SignUpModal = ({ showModal, setShowModal }: Props) => {
+  const animation = useSpring({
+    opacity: showModal ? 1 : 0,
+    transform: showModal ? `translateY(0)` : `translateY(-200%)`,
+    config: config.slow,
+  });
+
+  return (
+    <animated.div style={animation}>
+      <ModalWrapper>
+        <img src="/images/signup.svg" alt="Signup" aria-hidden={true} />
+        <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
+          <Img src="/images/close.svg" alt="Close modal icon" />
+        </CloseModalButton>
+
+        <SignUpHeader>Sign up!</SignUpHeader>
+        <PrimaryButton>Submit</PrimaryButton>
+      </ModalWrapper>
+    </animated.div>
   );
 };

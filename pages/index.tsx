@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Layout from '../components/Layout';
 import prisma from '../lib/prisma';
@@ -38,6 +38,8 @@ type Props = {
 };
 
 const Todos: React.FC<Props> = (props) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <Layout>
       <div className="page">
@@ -48,15 +50,9 @@ const Todos: React.FC<Props> = (props) => {
               <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
-          <PrimaryButton>Submit</PrimaryButton>
-          <br />
-          <br />
-          <SecondaryButton>Submit</SecondaryButton>
-          <br />
-          <br />
-          <TertiaryButton>Submit</TertiaryButton>
+          <PrimaryButton onClick={() => setShowModal(true)}>Open modal</PrimaryButton>
 
-          <SignUpModal />
+          <SignUpModal showModal={showModal} setShowModal={setShowModal} />
         </main>
       </div>
     </Layout>
