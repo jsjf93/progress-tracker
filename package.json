@@ -6,7 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook  -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
   "keywords": [],
@@ -27,8 +27,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@storybook/addon-actions": "^6.1.20",
+    "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.20",
+    "@storybook/addon-knobs": "^6.1.21",
     "@storybook/addon-links": "^6.1.20",
     "@storybook/react": "^6.1.20",
     "@testing-library/react": "^11.2.5",
