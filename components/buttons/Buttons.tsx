@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { defaultTheme, typeScale } from '../utils';
+import { defaultTheme, typeScale } from '../../utils';
 
 const BUTTON_MODIFIERS = {
   small: () => `

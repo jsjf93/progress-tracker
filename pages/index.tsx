@@ -5,7 +5,7 @@ import prisma from '../lib/prisma';
 import { Todo } from '@prisma/client';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
-import { PrimaryButton, SecondaryButton, TertiaryButton } from '@components/Buttons';
+import { PrimaryButton, SecondaryButton, TertiaryButton } from '@components/buttons/Buttons';
 import { SignUpModal } from '@components/Modal';
 
 type TodoWithUserName = Todo & {

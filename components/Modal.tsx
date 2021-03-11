@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { typeScale } from '../utils';
-import { PrimaryButton } from './Buttons';
+import { PrimaryButton } from './buttons/Buttons';
 import { animated, config, useSpring } from 'react-spring';
 
 const ModalWrapper = styled.div`
