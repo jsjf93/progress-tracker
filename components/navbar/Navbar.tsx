@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/client';
 import dayjs from 'dayjs';
 
-import { defaultTheme } from '../../utils';
+import { blue, defaultTheme } from '../../utils';
 import { SecondaryButton } from '../buttons/Buttons';
 
 const NavbarWrapper = styled.nav`
@@ -20,11 +20,29 @@ const NavbarWrapper = styled.nav`
 
 const NavbarSection = styled.div`
   height: fit-content;
+
+  > * {
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
 `;
 
-const HomeLink = styled.a`
-  color: ${defaultTheme.textColorInverted};
+const NavbarLink = styled.a<{ color?: string }>`
+  color: ${(props) => props.color || defaultTheme.textColorInverted};
   text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
+const UserCircle = styled.button`
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background-color: ${blue[100]};
+  color: ${defaultTheme.primaryColor};
   cursor: pointer;
 `;
 
@@ -34,20 +52,29 @@ export const Navbar = () => {
 
   const [session] = useSession();
 
+  const initials = session?.user.name.split(' ').reduce((a, c) => a + c[0], '');
+
   return (
     <NavbarWrapper>
       <NavbarSection>
         <Link href="/">
-          <HomeLink data-active={isActive('/')}>Home</HomeLink>
+          <NavbarLink data-active={isActive('/')}>Home</NavbarLink>
         </Link>
       </NavbarSection>
       <NavbarSection>
         {session ? (
-          <SecondaryButton onClick={() => signOut()}>Sign out</SecondaryButton>
+          <>
+            <Link href="/my-progress">
+              <NavbarLink data-active={isActive('/')}>My progress</NavbarLink>
+            </Link>
+            <UserCircle onClick={() => signOut()}>{initials}</UserCircle>
+          </>
         ) : (
           <SecondaryButton>
             <Link href="/api/auth/signin">
-              <a data-active={isActive('/signup')}>Sign in</a>
+              <NavbarLink data-active={isActive('/signup')} color={defaultTheme.primaryColor}>
+                Sign in
+              </NavbarLink>
             </Link>
           </SecondaryButton>
         )}
