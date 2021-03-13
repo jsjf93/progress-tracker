@@ -41,21 +41,19 @@ const Todos: React.FC<Props> = (props) => {
   // const [showModal, setShowModal] = useState(false);
 
   return (
-    <Layout>
-      <div className="page">
-        <h1>Todos by user</h1>
-        <main>
-          {/* {props.todos.map((todo) => (
+    <div className="page">
+      <h1>Todos by user</h1>
+      <main>
+        {/* {props.todos.map((todo) => (
             <div key={todo.id}>
               <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
           <PrimaryButton onClick={() => setShowModal(true)}>Open modal</PrimaryButton> */}
 
-          {/* <SignUpModal showModal={showModal} setShowModal={setShowModal} /> */}
-        </main>
-      </div>
-    </Layout>
+        {/* <SignUpModal showModal={showModal} setShowModal={setShowModal} /> */}
+      </main>
+    </div>
   );
 };
 
