@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { getSession } from 'next-auth/client';
 import { PrimaryButton, SecondaryButton, TertiaryButton } from '@components/buttons/Buttons';
 import { SignUpModal } from '@components/Modal';
+import { CircleLoader } from '@components/loaders/CircleLoader';
 
 type TodoWithUserName = Todo & {
   user: { name: string | null } | null;
@@ -52,6 +53,7 @@ const Todos: React.FC<Props> = (props) => {
           <PrimaryButton onClick={() => setShowModal(true)}>Open modal</PrimaryButton> */}
 
         {/* <SignUpModal showModal={showModal} setShowModal={setShowModal} /> */}
+        <CircleLoader size={50} />
       </main>
     </div>
   );
