@@ -127,4 +127,5 @@ export const SecondaryButton = styled(Button)`
 export const TertiaryButton = styled(Button)`
   color: ${defaultTheme.primaryColor};
   border: none;
+  background-color: transparent;
 `;

@@ -72,7 +72,7 @@ export const Navbar = () => {
         <NavbarSection>
           {session ? (
             <>
-              <Link href="/my-progress">
+              <Link href="/my-progress/front-page">
                 <NavbarLink data-active={isActive('/')}>My progress</NavbarLink>
               </Link>
               <UserCircle onClick={() => signOut()}>{userInitials}</UserCircle>
