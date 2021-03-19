@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/client';
-import { animated, config, useSpring } from 'react-spring';
 
 import { blue, defaultTheme } from '../../utils';
 import { SecondaryButton } from '../buttons/Buttons';
@@ -55,39 +53,31 @@ export const Navbar = () => {
 
   const userInitials = session?.user.name.split(' ').reduce((a, c) => a + c[0], '');
 
-  const animation = useSpring({
-    from: { transform: 'translateY(-60px)' },
-    to: { transform: 'translateY(0)' },
-    config: config.slow,
-  });
-
   return (
-    <animated.div style={animation}>
-      <NavbarWrapper>
-        <NavbarSection>
-          <Link href="/">
-            <NavbarLink data-active={isActive('/')}>Home</NavbarLink>
-          </Link>
-        </NavbarSection>
-        <NavbarSection>
-          {session ? (
-            <>
-              <Link href="/my-progress/front-page">
-                <NavbarLink data-active={isActive('/')}>My progress</NavbarLink>
-              </Link>
-              <UserCircle onClick={() => signOut()}>{userInitials}</UserCircle>
-            </>
-          ) : (
-            <SecondaryButton>
-              <Link href="/api/auth/signin">
-                <NavbarLink data-active={isActive('/signup')} color={defaultTheme.primaryColor}>
-                  Sign in
-                </NavbarLink>
-              </Link>
-            </SecondaryButton>
-          )}
-        </NavbarSection>
-      </NavbarWrapper>
-    </animated.div>
+    <NavbarWrapper>
+      <NavbarSection>
+        <Link href="/">
+          <NavbarLink data-active={isActive('/')}>Home</NavbarLink>
+        </Link>
+      </NavbarSection>
+      <NavbarSection>
+        {session ? (
+          <>
+            <Link href="/my-progress/front-page">
+              <NavbarLink data-active={isActive('/')}>My progress</NavbarLink>
+            </Link>
+            <UserCircle onClick={() => signOut()}>{userInitials}</UserCircle>
+          </>
+        ) : (
+          <SecondaryButton>
+            <Link href="/api/auth/signin">
+              <NavbarLink data-active={isActive('/signup')} color={defaultTheme.primaryColor}>
+                Sign in
+              </NavbarLink>
+            </Link>
+          </SecondaryButton>
+        )}
+      </NavbarSection>
+    </NavbarWrapper>
   );
 };

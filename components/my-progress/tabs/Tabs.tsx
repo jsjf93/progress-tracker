@@ -26,6 +26,10 @@ const TabLink = styled.a`
     text-decoration: none;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:active {
     background-color: ${defaultTheme.textColorInverted};
   }
