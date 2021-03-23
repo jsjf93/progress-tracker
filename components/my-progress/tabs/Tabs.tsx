@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { blue, defaultTheme } from 'utils';
 
@@ -10,12 +11,16 @@ const TabContainer = styled.div`
   justify-content: center;
 `;
 
-const TabLink = styled.a`
+type TabLinkProps = {
+  active: boolean;
+}
+
+const TabLink = styled.a<TabLinkProps>`
   padding: 0;
   margin: 0 24px;
   min-width: 150px;
-  color: ${defaultTheme.textColorInverted};
-  background-color: transparent;
+  color: ${props => props.active ? defaultTheme.primaryColor : defaultTheme.textColorInverted};
+  background-color: ${props => props.active ? defaultTheme.textColorInverted : 'transparent'};
   border: none;
   display: flex;
   align-items: center;
@@ -29,26 +34,24 @@ const TabLink = styled.a`
   &:hover {
     cursor: pointer;
   }
-
-  &:active {
-    background-color: ${defaultTheme.textColorInverted};
-  }
 `;
 
 export const Tabs = () => {
+  const router = useRouter();
+
   return (
     <TabContainer>
       <Link href="/my-progress/front-page">
-        <TabLink>Front page</TabLink>
+        <TabLink active={router.pathname.includes('front-page')}>Front page</TabLink>
       </Link>
       <Link href="/my-progress/matrix">
-        <TabLink>Matrix</TabLink>
+        <TabLink active={router.pathname.includes('matrix')}>Matrix</TabLink>
       </Link>
       <Link href="/my-progress/summary">
-        <TabLink>Summary</TabLink>
+        <TabLink active={router.pathname.includes('summary')}>Summary</TabLink>
       </Link>
       <Link href="/my-progress/feedback">
-        <TabLink>360 Feedback</TabLink>
+        <TabLink active={router.pathname.includes('feedback')}>360 Feedback</TabLink>
       </Link>
     </TabContainer>
   );
