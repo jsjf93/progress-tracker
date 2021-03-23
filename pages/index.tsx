@@ -1,10 +1,13 @@
-import React from 'react';
+import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Layout from '../components/Layout';
 import prisma from '../lib/prisma';
 import { Todo } from '@prisma/client';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
+import { PrimaryButton, SecondaryButton, TertiaryButton } from '@components/buttons/Buttons';
+import { SignUpModal } from '@components/Modal';
+import { CircleLoader } from '@components/loaders/CircleLoader';
 
 type TodoWithUserName = Todo & {
   user: { name: string | null } | null;
@@ -36,19 +39,23 @@ type Props = {
 };
 
 const Todos: React.FC<Props> = (props) => {
+  // const [showModal, setShowModal] = useState(false);
+
   return (
-    <Layout>
-      <div className="page">
-        <h1>Todos by user</h1>
-        <main>
-          {props.todos.map((todo) => (
+    <div className="page">
+      <h1>Todos by user</h1>
+      <main>
+        {/* {props.todos.map((todo) => (
             <div key={todo.id}>
               <Link href={`/p/${todo.id}`}>{`${todo.title} - ${todo.user?.name}`}</Link>
             </div>
           ))}
-        </main>
-      </div>
-    </Layout>
+          <PrimaryButton onClick={() => setShowModal(true)}>Open modal</PrimaryButton> */}
+
+        {/* <SignUpModal showModal={showModal} setShowModal={setShowModal} /> */}
+        <CircleLoader size={50} />
+      </main>
+    </div>
   );
 };
 

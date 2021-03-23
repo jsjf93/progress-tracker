@@ -1,0 +1,42 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { PrimaryButton, SecondaryButton, TertiaryButton } from './Buttons';
+
+<Meta title="Buttons" component={PrimaryButton} />
+
+# Buttons
+
+Some info about buttons
+
+## Usage
+
+Use buttons to do things.
+
+## Primary Buttons
+
+Something something something. Using Preview from @storybook/addon-docs/blocks
+
+<Preview withToolbar>
+  <Story name="primary">
+    <PrimaryButton onClick={action('button-click')} disabled={boolean('disabled', true)}>
+      Hello world
+    </PrimaryButton>
+  </Story>
+</Preview>
+
+## Secondary Buttons
+
+Something something something.
+
+<Story name="secondary">
+  <SecondaryButton>Hello world</SecondaryButton>
+</Story>
+
+## Tertiary Buttons
+
+Something something something.
+
+<Story name="tertiary">
+  <TertiaryButton>Hello world</TertiaryButton>
+</Story>
